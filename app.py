@@ -34,6 +34,7 @@ def get_stock_price(stock):
     return Response(json.dumps(data))
 
 from textblob import TextBlob
+import numpy as np
 
 @app.route('/sentiscore')
 def get_senti_score():
@@ -51,7 +52,7 @@ def get_senti_score():
         'statusCode': 200,
         'body': {
             'text': text,
-            'scores': s,
+            'scores': round(np.average(s), 2),
         }
     }  
     return Response(json.dumps(data))
